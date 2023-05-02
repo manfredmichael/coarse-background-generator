@@ -28,11 +28,11 @@ def main():
     background_images = utils.list_images(args.backgrounds)
 
     print("loading background")
-    background_images = utils.load_images(background_images[:10])
+    # background_images = utils.load_images(background_images[:10])
 
     for file_path in image_files:
         image = cv2.imread(file_path)
-        bg_image = random.choice(background_images)
+        bg_image = cv2.imread(random.choice(background_images))
 
         result = background_generator.apply_background(image, bg_image)
 
