@@ -4,6 +4,8 @@ from rembg import remove, new_session
 import cv2
 import numpy as np
 
+session = new_session()
+
 
 def add_image_on_top(base_image, overlay_image):
     # Load the base image and overlay image
@@ -169,15 +171,13 @@ def apply_mask(image, mask, virtual_background):
     image[mask_resized<128] = virtual_background[mask_resized<128]
     return image
 
-def apply_background(image, background, virtual_background, return_steps=False):
-    mask = get_mask(image, background)
-    image = apply_mask(image, mask, virtual_background)
+def apply_background(image, background, session=session):
+    mask = get_mask(image, background, session)
+    image = apply_mask(image, mask, background)
 
     return image
 
 def main():
-    session = new_session()
-
     background = cv2.imread("bg.jpg")
     overlay_image = cv2.imread("data/test/layak/DSC_1181.JPG")
     # virtual_background = rescale(background, scale_percent=40)
