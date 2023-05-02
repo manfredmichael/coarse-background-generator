@@ -1,4 +1,6 @@
 **/__pycache__
 data/*
+backgrounds/*
 
 !data/.gitkeep
+!backgrounds/.gitkeep
